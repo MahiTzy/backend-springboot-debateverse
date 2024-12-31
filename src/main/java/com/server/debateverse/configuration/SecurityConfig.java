@@ -86,7 +86,7 @@ public class SecurityConfig {
     private CorsConfigurationSource corsConfigurationSource() {
         return request -> {
             CorsConfiguration corsConfiguration = new CorsConfiguration();
-            corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200"));
+            corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200", "https://debateversebymohit.vercel.app"));
             corsConfiguration.setAllowedMethods(List.of(HttpMethod.GET.name(), HttpMethod.POST.name(),
                     HttpMethod.PUT.name(), HttpMethod.DELETE.name()));
             corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
