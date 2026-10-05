@@ -84,13 +84,25 @@ public class SecurityConfig {
     }
 
     private CorsConfigurationSource corsConfigurationSource() {
-        return request -> {
-            CorsConfiguration corsConfiguration = new CorsConfiguration();
-            corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200"));
-            corsConfiguration.setAllowedMethods(List.of(HttpMethod.GET.name(), HttpMethod.POST.name(),
-                    HttpMethod.PUT.name(), HttpMethod.DELETE.name()));
-            corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
-            return corsConfiguration;
-        };
-    }
+    return request -> {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedOrigins(List.of(
+                "http://localhost:4200",
+                "https://frontend-angular-debateverse-229.vercel.app"
+        ));
+        corsConfiguration.setAllowedMethods(List.of(
+                HttpMethod.GET.name(),
+                HttpMethod.POST.name(),
+                HttpMethod.PUT.name(),
+                HttpMethod.DELETE.name(),
+                HttpMethod.OPTIONS.name()
+        ));
+        corsConfiguration.setAllowedHeaders(List.of(
+                "Authorization", "Cache-Control", "Content-Type"
+        ));
+        corsConfiguration.setExposedHeaders(List.of("Authorization"));
+        corsConfiguration.setMaxAge(3600L);
+        return corsConfiguration;
+    };
+}
 }
